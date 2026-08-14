@@ -1,28 +1,29 @@
 {
   "name": "ambush-streams",
-  "version": "0.1.0",
-  "description": "Create, review, and manage personalized Ambush news streams from Codex.",
+  "version": "0.2.0",
+  "description": "Create, process, deliver, and manage personalized Ambush news streams from Codex.",
   "author": {
     "name": "Ambush AI",
     "email": "support@ambush.ai",
     "url": "https://ambush.ai"
   },
-  "homepage": "https://ambush.ai",
+  "homepage": "https://app.ambush.ai/feeds",
   "repository": "https://github.com/Ambush-AI/codex-plugins",
-  "keywords": ["ambush", "streams", "news", "monitoring", "alerts"],
+  "keywords": ["ambush", "streams", "news", "monitoring", "alerts", "delivery"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Ambush Streams",
-    "shortDescription": "Manage personalized news streams",
-    "longDescription": "Turn a plain-language monitoring request into an Ambush stream, review existing streams and their emissions, update prompts or names, and pause, resume, or delete streams without leaving Codex.",
+    "shortDescription": "Manage streams, processing, and delivery",
+    "longDescription": "Turn a plain-language monitoring request into an Ambush stream, process and route every future event to a connected destination, review emissions, update prompts or names, and pause, resume, or delete streams without leaving Codex.",
     "developerName": "Ambush AI",
     "category": "Productivity",
     "capabilities": ["Interactive", "Read", "Write"],
-    "websiteURL": "https://ambush.ai",
+    "websiteURL": "https://app.ambush.ai/feeds",
     "privacyPolicyURL": "https://reflex.app/privacy",
     "defaultPrompt": [
       "List my Ambush streams and summarize their status.",
       "Create a stream that monitors a topic for me.",
+      "Process every event from one of my streams and send it to a connected channel.",
       "Show the latest emissions from one of my streams."
     ],
     "brandColor": "#12BFAE",
