@@ -7,7 +7,7 @@ Use this directory as the source of truth for a future Ambush Streams submission
 - [x] Production MCP uses HTTPS at `https://api.ambush.ai/mcp`.
 - [x] OAuth authorization, dynamic client registration, and PKCE work with Codex.
 - [x] MCP discovery metadata and protected-resource challenges are public.
-- [x] Tool annotations distinguish reads, writes, and destructive deletion.
+- [x] Tool annotations distinguish reads, writes, and destructive operations.
 - [x] A privacy policy is public at `https://reflex.app/privacy`.
 - [x] Support is public at `https://reflex.app/support` and `support@ambush.ai`.
 - [ ] Publish legal-approved Ambush terms of service at a public HTTPS URL, add `termsOfServiceURL` to the plugin manifest, and replace the pending value in the listing copy.

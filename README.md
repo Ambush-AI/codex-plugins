@@ -1,6 +1,6 @@
 # Ambush AI plugins for Codex
 
-This repository is the official Codex marketplace for Ambush AI. It currently publishes the Ambush Streams plugin, which connects Codex to the production Ambush MCP server and teaches Codex how to manage personalized news streams safely.
+This repository is the official Codex marketplace for Ambush AI. It currently publishes the Ambush Streams plugin, which connects Codex to the production Ambush MCP server and teaches Codex how to manage personalized news streams, per-event processing, and delivery safely.
 
 This repository is intentionally separate from the other Ambush distribution formats:
 
@@ -22,7 +22,7 @@ Install Ambush Streams:
 codex plugin add ambush-streams@ambush-ai
 ~~~
 
-Restart Codex if it is already open. When prompted, connect your Ambush account through OAuth. You can then ask Codex to create, list, update, pause, resume, or permanently delete a stream, or review its emitted news items.
+Restart Codex if it is already open. When prompted, connect your Ambush account through OAuth. You can then ask Codex to create, list, update, process, route, pause, resume, or permanently delete a stream, or review its emitted news items.
 
 ## Repository layout
 

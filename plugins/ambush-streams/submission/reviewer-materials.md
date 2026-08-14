@@ -5,7 +5,7 @@ Prepare these materials immediately before submission. Do not commit demo creden
 ## Demo recording
 
 - [ ] Record the production plugin in every product selected in the portal.
-- [ ] Show OAuth sign-in, stream discovery, stream creation, a status update, emission review, and the explicit confirmation before deletion.
+- [ ] Show OAuth sign-in, stream discovery, stream creation, event-time post-processing and routing, a status update, emission review, and the explicit confirmation before deletion.
 - [ ] Host the recording at a stable reviewer-accessible HTTPS URL.
 - [ ] Enter that URL directly in the submission portal.
 
@@ -17,8 +17,11 @@ Copy these justifications into the portal for the production tool scan.
 | --- | --- | --- | --- |
 | `list_feeds` | `true` — reads stream summaries without changing account state. | `false` — reads only the authenticated user's Ambush data. | `false` — cannot alter or remove data. |
 | `get_feed` | `true` — reads one stream, its channels, usage, and recent emissions. | `false` — reads only the authenticated user's Ambush data. | `false` — cannot alter or remove data. |
+| `list_channels` | `true` — reads delivery destination metadata without changing state; webhook paths and internal metadata are redacted before model exposure. | `false` — reads only the authenticated user's Ambush data. | `false` — cannot alter or remove data. |
 | `create_feed` | `false` — creates persistent stream state. | `false` — writes only to the authenticated user's Ambush account. | `false` — creation does not remove or irreversibly overwrite existing data. |
-| `update_feed` | `false` — changes a stream's name, prompt, or status. | `false` — writes only to the authenticated user's Ambush account. | `false` — supported changes are reversible through another update. |
+| `update_feed` | `false` — changes a stream's name, prompt, status, or event transformation. | `false` — writes only to the authenticated user's Ambush account. | `false` — supported changes are reversible through another update. |
+| `route_feed_channel` | `false` — creates or reactivates a stream-to-destination route. | `false` — routes only between resources in the authenticated user's Ambush account. | `false` — the route can be muted without deleting either resource. |
+| `update_feed_channel_route` | `false` — mutes or unmutes future deliveries on an existing route. | `false` — updates only the authenticated user's Ambush route. | `true` — muting permanently cancels pending deliveries and attempts, and unmuting does not recreate them. |
 | `delete_feed` | `false` — changes account state by deleting a stream. | `false` — affects only the authenticated user's Ambush account. | `true` — permanently removes the selected stream and cannot be undone. |
 | `list_emissions` | `true` — reads emission history without changing state. | `false` — reads only the authenticated user's Ambush data. | `false` — cannot alter or remove data. |
 
@@ -38,7 +41,7 @@ Reconfirm all annotations against the production scan immediately before submiss
 ## Production tool scan
 
 - [ ] Run the portal's tool scan against `https://api.ambush.ai/mcp` after the final tool metadata is live.
-- [ ] Confirm all six expected tools are present.
+- [ ] Confirm all nine expected tools are present.
 - [ ] Confirm every tool has explicit read-only, open-world, and destructive annotations matching the table above.
 - [ ] Record the successful scan timestamp in the portal.
 

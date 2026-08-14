@@ -1,5 +1,13 @@
 # Release notes
 
+## 0.2.0 — event-driven workflows
+
+- Configures prompt-based or structured post-processing for every future accepted stream event.
+- Discovers preconfigured Slack, webhook, and iMessage destinations without exposing credentials.
+- Routes streams to delivery channels through the native Ambush event pipeline instead of scheduled polling.
+- Mutes and unmutes individual stream-to-channel routes without pausing the stream or deleting the destination.
+- Guides trade-analysis workflows to allow an explicit no-trade result and avoid unsupported certainty.
+
 ## 0.1.0 — initial package
 
 - Connects Codex to the production Ambush Streams MCP server with OAuth.
