@@ -1,17 +1,18 @@
 # Plugin review cases
 
-Run these five positive and three negative cases with the dedicated reviewer account. Reset the account to the fixture baseline before every case so no case depends on a mutation performed by another case. Record observed tool calls and outcomes without committing credentials or account identifiers.
+Run exactly these six positive and three negative cases with the dedicated reviewer account. Reset the account to the fixture baseline before every case so no case depends on a mutation performed by another case. Record observed tool calls and outcomes without committing credentials or account identifiers.
 
 ## Required fixture baseline
 
-Seed and verify these test-only fixtures immediately before submission.
+Seed and verify these test-only fixtures immediately before submission. Do not wait for live ingestion to produce them, and do not use the stream created in positive case 2 as the input to positive case 4.
 
 | Fixture | Required state | Used by |
 | --- | --- | --- |
 | `AI regulation` | One uniquely named paused stream whose prompt monitors proposed AI rules broadly. | Positive cases 1 and 3 |
-| `AI Chip Supply` | One uniquely named paused stream with exactly the five deterministic emissions below. | Positive case 4 |
-| `Review Disposable` | One uniquely named active stream. Record its real ID as `<disposable-stream-id>`. | Positive case 5 |
+| `AI Chip Supply` | One uniquely named paused stream with exactly the five deterministic emissions below, preventing live ingestion from changing the fixture during review. | Positive cases 4 and 5 |
+| `Review Disposable` | One uniquely named active stream. Record its real ID as `<disposable-stream-id>` for the run. | Positive case 6 |
 | `General Market Monitor` | One uniquely named active stream, ensuring the list case contains active and paused states. | Positive case 1 |
+| `Trade Ideas` | One Slack delivery channel with install status `connected` and destination status `active` that is not initially routed to `AI Chip Supply`. | Positive case 5 |
 
 Seed exactly these five emissions on `AI Chip Supply`, ordered newest first:
 
@@ -21,7 +22,7 @@ Seed exactly these five emissions on `AI Chip Supply`, ordered newest first:
 4. `2026-01-02T12:00:00Z` — `Review fixture — leading-edge foundry outage`
 5. `2026-01-01T12:00:00Z` — `Review fixture — substrate supplier capacity reduction`
 
-Before each case, remove any stream created by an earlier run, restore the four named streams to the states above, and confirm `AI Chip Supply` has exactly those five emissions. If fixture reset fails, stop the review run.
+Before each case, remove any stream created by an earlier run, restore the four named streams to the states above, and confirm `AI Chip Supply` has exactly those five emissions. If fixture reset fails, stop the review run instead of adapting the expected result to stale state.
 
 ## Positive cases
 
@@ -41,15 +42,21 @@ Expected: Invoke `create_feed` exactly once with the supplied name and a faithfu
 
 Prompt: `Resume my paused AI regulation stream and change it to focus on enacted rules and enforcement actions.`
 
-Expected: Resolve the exact stream with `list_feeds` when its ID is not already known, then invoke `update_feed` with that stream ID, `status: "active"`, and the revised prompt. If duplicate names exist, ask the user to choose before writing.
+Expected: Resolve the exact stream with `list_feeds` when its ID is not already known, then invoke `update_feed` with that stream ID, `status: "active"`, and the revised prompt. Do not search for a separate resume operation. If duplicate names exist, ask the user to choose before writing.
 
 ### 4. Review recent emissions
 
 Prompt: `Show me the five latest items emitted by my AI Chip Supply stream.`
 
-Expected: Resolve the uniquely named seeded stream, invoke `list_emissions` with a limit of five, and summarize exactly the five newest seeded emissions in returned order.
+Expected: Resolve the uniquely named seeded stream, invoke `list_emissions` with a limit of five, and summarize exactly the five newest seeded emissions in returned order. Do not use a stream created in another case, and do not claim there were no items if the request failed.
 
-### 5. Delete after exact confirmation
+### 5. Process and deliver every event without polling
+
+Prompt: `For every new event from my AI Chip Supply stream, produce a cautious trade idea or explicitly say no trade, and send it to my Trade Ideas Slack channel every time the stream fires.`
+
+Expected: Resolve `AI Chip Supply`, inspect it with `get_feed`, invoke `update_feed` once with a faithful `post_processing` prompt that permits `no_trade`, invoke `list_channels`, and invoke `route_feed_channel` with the connected `Trade Ideas` Slack channel. Confirm this applies to future accepted events. Do not create or suggest a scheduled polling task, do not change the stream's monitoring prompt, and do not ask for Slack credentials.
+
+### 6. Delete after exact confirmation
 
 Prompt: `Permanently delete stream <disposable-stream-id>. I confirm that exact stream.`
 

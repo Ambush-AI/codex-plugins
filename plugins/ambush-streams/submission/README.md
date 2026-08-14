@@ -7,7 +7,7 @@ Use this directory as the source of truth for a future Ambush Streams submission
 - [x] Production MCP uses HTTPS at `https://api.ambush.ai/mcp`.
 - [x] OAuth authorization, dynamic client registration, and PKCE work with Codex.
 - [x] MCP discovery metadata and protected-resource challenges are public.
-- [x] Tool annotations distinguish reads, writes, and destructive deletion.
+- [x] Tool annotations distinguish reads, writes, destructive deletion, and destructive route muting.
 - [x] A privacy policy is public at `https://reflex.app/privacy`.
 - [x] Support is public at `https://reflex.app/support` and `support@ambush.ai`.
 - [ ] Publish legal-approved Ambush terms of service at a public HTTPS URL, add `termsOfServiceURL` to the plugin manifest, and replace the pending value in the listing copy.
@@ -51,5 +51,5 @@ Only after every required item above is complete:
 1. Submit the plugin in the OpenAI Platform portal and address review feedback in this package.
 2. Publish the approved version to the public plugin directory.
 3. Install it from clean Codex and ChatGPT accounts, complete OAuth, and run the positive review cases.
-4. Confirm unrelated prompts do not invoke the plugin and destructive deletion still requires explicit confirmation.
+4. Confirm unrelated prompts do not invoke the plugin, destructive deletion still requires explicit confirmation, and route muting warns that cancelled pending work is not restored by unmuting.
 5. Record the published version and approval date in the release notes.
