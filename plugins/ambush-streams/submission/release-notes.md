@@ -1,5 +1,11 @@
 # Release notes
 
+## 0.2.1 — current API compatibility
+
+- Requires a monitoring prompt when creating a stream and no longer sends the removed base-stream field.
+- Recognizes configured Telegram destinations alongside Slack, webhook, and iMessage destinations.
+- Keeps the nine-tool event processing, delivery routing, lifecycle, and emission workflow from 0.2.0.
+
 ## 0.2.0 — event-driven workflows
 
 - Configures prompt-based or structured post-processing for every future accepted stream event.

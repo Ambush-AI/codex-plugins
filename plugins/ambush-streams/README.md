@@ -22,8 +22,8 @@ The assistant resolves the appropriate stream, event transformation, and preconf
 
 ## Compatibility
 
-The production MCP API retains legacy identifiers such as list_feeds, create_feed, update_feed, delete_feed, and base_feed_id. Those names are part of the wire contract. The plugin and skill consistently call the user-facing resources streams.
+The production MCP API retains legacy identifiers such as list_feeds, create_feed, update_feed, delete_feed, and feed_id. Those names are part of the wire contract. The plugin and skill consistently call the user-facing resources streams.
 
 ## Status
 
-Version 0.2.0 is prepared for repository-based testing. It has not been submitted to OpenAI's public plugin directory.
+Version 0.2.1 is prepared for repository-based testing. It has not been submitted to OpenAI's public plugin directory.
