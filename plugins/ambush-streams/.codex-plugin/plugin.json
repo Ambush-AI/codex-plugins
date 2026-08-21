@@ -1,6 +1,6 @@
 {
   "name": "ambush-streams",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Create, process, deliver, and manage personalized Ambush news streams from Codex.",
   "author": {
     "name": "Ambush AI",
@@ -23,8 +23,7 @@
     "defaultPrompt": [
       "List my Ambush streams and summarize their status.",
       "Create a stream that monitors a topic for me.",
-      "Process every event from one of my streams and send it to a connected channel.",
-      "Show the latest emissions from one of my streams."
+      "Process every event from one of my streams and send it to a connected channel."
     ],
     "brandColor": "#12BFAE",
     "composerIcon": "./assets/ambush-icon.svg",
